@@ -14,7 +14,7 @@ I was having trouble getting the desired numbers in each column using faker, so 
 
 # Producer and Consumer Set up
 
-For my project, I wanted to go with one producer reading through the csv file and setting the entry totals to 6 different consumers, each with their own queue. 
+For my project, I wanted to go with one producer reading through the csv file and sending the entry totals to 6 different consumers, each with their own queue. 
 
 ## Producer
 
@@ -23,4 +23,3 @@ Every time I send messages out, my producer will go through the csv file and rea
 ## Consumers
 
 Within each consumer, a running total will be kept for the entry totals of each gate. What I will be monitoring is if an interval is an outlier of the running average. If it is way above the running average, then we will send an email (alert) to extra staff members letting them know to go to a gate to help facilitate fans into the stadium. If an interval is an outlier below the running average, then we will send an email (alert) to those staff members, letting them know they aren't needed at those gates anymore, and they may return back to where they were.
-  
