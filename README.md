@@ -32,15 +32,15 @@ Within each consumer, a running total will be kept for the entry totals of each 
 
 I used the email function from the smoker project. In a real world application, it wouldn't be an email, but rather an update to worker's phones via a mobile app. 
 
---- surge example email
---- decrease example email
+![Surge Email](EmailSurge.png)
+![Decrease Email](EmailDecrease.png)
 
 ### Created List and Running Totals
 
 In order to monitor changes in entry totals, I had to create variables for each gate. I had two for each gate, a count and a total. The count variable is in there as a ticker to keep track of how many updates we have for each gate. I need that because, although we get updates every 30 seconds, I only want to check if we need to send workers every 2.5 minutes (5 new entries). The totals variable works as a list that we append each entry to and allows us to look at the running average of each gate. 
 There are two more variables to help keep track of the workers - Worker_Count and Worker_Recalls. These two, along with the count for each gate, have to be identified as global variables within each callback function to allow me to continually alter them. 
 
---- counts and totals
+![Counts and Totals](CountsTotals.png)
 
 ### Callback Functions
 
@@ -51,6 +51,6 @@ Each callback function is designed identically, just replacing the gate name eac
 In my received message I kept the format simple as "Gate Name: Timestamp -- ## new entries".
 I felt like my eyes were bouncing around when receiving messages so I added dashes to each gate other than CommumityAmerica Gate so each of the timestamps and entry numbers lined up neatly.
 
--- received message
+![Message Received](ReceivedMessage.png)
 
 
