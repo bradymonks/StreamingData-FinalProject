@@ -150,6 +150,7 @@ Founders_Totals = []
 Founders_Count = 0
 Tower_Totals = []
 Tower_Count = 0
+Worker_Count = 0
 
 # define a callback function to be called when a message is received for the HyVee Gate
 def HyVee_callback(ch, method, properties, body):
@@ -173,7 +174,8 @@ def HyVee_callback(ch, method, properties, body):
     if isinstance(entries, float):
         HyVee_Totals.append(entries)
 
-    # Identify HyVee_Count as a global variable
+    # Identify global variables
+    global Worker_Count
     global HyVee_Count
 
     # add to count 
@@ -195,14 +197,15 @@ def HyVee_callback(ch, method, properties, body):
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a surge of "+ str(entries) + " entries at the HyVee Gate at "+ timestamp + " send help."
             print(alert)
-            subject_str = "HyVee Gate"
+            subject_str = "HyVee Gate - Surge"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            Worker_Count += 1
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a decrease of " + str(entries) + " entries at the HyVee Gate at " + timestamp +  ", return workers."
             print(alert)
-            subject_str = "HyVee Gate"
+            subject_str = "HyVee Gate - Decrease"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
@@ -210,7 +213,7 @@ def HyVee_callback(ch, method, properties, body):
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
     # when done with task, tell the user
-    print(" [x] Done.")
+    # print(" [x] Done.")
     # acknowledge the message was received and processed 
     # (now it can be deleted from the queue)
     ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -237,7 +240,8 @@ def GEHA_callback(ch, method, properties, body):
     if isinstance(entries, float):
         GEHA_Totals.append(entries)
 
-    # Identify HyVee_Count as a global variable
+    # Identify global variables
+    global Worker_Count
     global GEHA_Count
 
     # add to count 
@@ -259,21 +263,22 @@ def GEHA_callback(ch, method, properties, body):
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a surge of "+ str(entries) + " entries at the GEHA Gate at "+ timestamp + " send help."
             print(alert)
-            subject_str = "GEHA Gate"
+            subject_str = "GEHA Gate - Surge"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            Worker_Count += 1
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a decrease of " + str(entries) + " entries at the GEHA Gate at " + timestamp +  ", return workers."
             print(alert)
-            subject_str = "GEHA Gate"
+            subject_str = "GEHA Gate - Decrease"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
     # when done with task, tell the user
-    print(" [x] Done.")
+    # print(" [x] Done.")
     # acknowledge the message was received and processed 
     # (now it can be deleted from the queue)
     ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -300,7 +305,8 @@ def TMobile_callback(ch, method, properties, body):
     if isinstance(entries, float):
         TMobile_Totals.append(entries)
 
-    # Identify HyVee_Count as a global variable
+    # Identify global variables
+    global Worker_Count
     global TMobile_Count
 
     # add to count 
@@ -322,14 +328,15 @@ def TMobile_callback(ch, method, properties, body):
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a surge of "+ str(entries) + " entries at the T-Mobile Gate at "+ timestamp + " send help."
             print(alert)
-            subject_str = "T-Mobile Gate"
+            subject_str = "T-Mobile Gate - Surge"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            Worker_Count += 1
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a decrease of " + str(entries) + " entries at the T-Mobile Gate at " + timestamp +  ", return workers."
             print(alert)
-            subject_str = "T-Mobile Gate"
+            subject_str = "T-Mobile Gate - Decrease"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
@@ -337,7 +344,7 @@ def TMobile_callback(ch, method, properties, body):
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
     # when done with task, tell the user
-    print(" [x] Done.")
+    # print(" [x] Done.")
     # acknowledge the message was received and processed 
     # (now it can be deleted from the queue)
     ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -364,7 +371,8 @@ def CommunityAmerica_callback(ch, method, properties, body):
     if isinstance(entries, float):
         CommunityAmerica_Totals.append(entries)
 
-    # Identify HyVee_Count as a global variable
+    # Identify global variables
+    global Worker_Count
     global CommunityAmerica_Count
 
     # add to count 
@@ -386,21 +394,22 @@ def CommunityAmerica_callback(ch, method, properties, body):
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a surge of "+ str(entries) + " entries at the CommunityAmerica Gate at "+ timestamp + " send help."
             print(alert)
-            subject_str = "CommunityAmerica Gate"
+            subject_str = "CommunityAmerica Gate - Surge"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            Worker_Count += 1
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a decrease of " + str(entries) + " entries at the CommunityAmerica Gate at " + timestamp +  ", return workers."
             print(alert)
-            subject_str = "CommunityAmerica Gate"
+            subject_str = "CommunityAmerica Gate - Decrease"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
     # when done with task, tell the user
-    print(" [x] Done.")
+    # print(" [x] Done.")
     # acknowledge the message was received and processed 
     # (now it can be deleted from the queue)
     ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -427,7 +436,8 @@ def Founders_callback(ch, method, properties, body):
     if isinstance(entries, float):
         Founders_Totals.append(entries)
 
-    # Identify HyVee_Count as a global variable
+    # Identify global variables
+    global Worker_Count
     global Founders_Count
 
     # add to count 
@@ -449,21 +459,22 @@ def Founders_callback(ch, method, properties, body):
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a surge of "+ str(entries) + " entries at the Founder's Plaza Gate at "+ timestamp + " send help."
             print(alert)
-            subject_str = "Founder's Plaza Gate"
+            subject_str = "Founder's Plaza Gate - Surge"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            Worker_Count += 1
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a decrease of " + str(entries) + " entries at the Founder's Plaza Gate at " + timestamp +  ", return workers."
             print(alert)
-            subject_str = "Founder's Plaza Gate"
+            subject_str = "Founder's Plaza Gate - Decrease"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
     # when done with task, tell the user
-    print(" [x] Done.")
+    # print(" [x] Done.")
     # acknowledge the message was received and processed 
     # (now it can be deleted from the queue)
     ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -490,7 +501,8 @@ def Tower_callback(ch, method, properties, body):
     if isinstance(entries, float):
         Tower_Totals.append(entries)
 
-    # Identify HyVee_Count as a global variable
+    # Identify global variables
+    global Worker_Count
     global Tower_Count
 
     # add to count 
@@ -512,21 +524,25 @@ def Tower_callback(ch, method, properties, body):
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a surge of "+ str(entries) + " entries at the Tower Gate at "+ timestamp + " send help."
             print(alert)
-            subject_str = "Tower Gate"
+            subject_str = "Tower Gate - Surge"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            Worker_Count += 1
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
             alert = "***** There is a decrease of " + str(entries) + " entries at the Tower Gate at " + timestamp +  ", return workers."
             print(alert)
-            subject_str = "Tower Gate"
+            subject_str = "Tower Gate - Surge"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+
+    # Print number of workers sent out to help
+    print(Worker_Count)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
     # when done with task, tell the user
-    print(" [x] Done.")
+    # print(" [x] Done.")
     # acknowledge the message was received and processed 
     # (now it can be deleted from the queue)
     ch.basic_ack(delivery_tag=method.delivery_tag)
