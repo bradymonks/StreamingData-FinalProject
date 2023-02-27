@@ -183,23 +183,24 @@ def HyVee_callback(ch, method, properties, body):
     # check to see if the most current entry is an outlier
 
     if HyVee_Count % 5 == 0:
-        # define a constant for the outlier threshold
-        OUTLIER_THRESHOLD = 2
+        # define constants for the outlier thresholds
+        UPPER_OUTLIER_THRESHOLD = 3
+        LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the HyVee_Totals list
         mean = statistics.mean(HyVee_Totals)
         stdev = statistics.stdev(HyVee_Totals)
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
-        if entries > mean + OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the HyVee Gate at "+ timestamp + "send help."
+        if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a surge of "+ str(entries) + " entries at the HyVee Gate at "+ timestamp + " send help."
             print(alert)
             subject_str = "HyVee Gate"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
-        elif entries < mean - OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the HyVee Gate at " + timestamp +  "return workers."
+        elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a decrease of " + str(entries) + " entries at the HyVee Gate at " + timestamp +  ", return workers."
             print(alert)
             subject_str = "HyVee Gate"
             content_str = alert
@@ -246,23 +247,24 @@ def GEHA_callback(ch, method, properties, body):
     # check to see if the most current entry is an outlier
 
     if GEHA_Count % 5 == 0:
-        # define a constant for the outlier threshold
-        OUTLIER_THRESHOLD = 2
+        # define constants for the outlier thresholds
+        UPPER_OUTLIER_THRESHOLD = 3
+        LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the GEHA_Totals list
         mean = statistics.mean(GEHA_Totals)
         stdev = statistics.stdev(GEHA_Totals)
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
-        if entries > mean + OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the GEHA Gate at "+ timestamp + "send help."
+        if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a surge of "+ str(entries) + " entries at the GEHA Gate at "+ timestamp + " send help."
             print(alert)
             subject_str = "GEHA Gate"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
-        elif entries < mean - OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the GEHA Gate at " + timestamp +  "return workers."
+        elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a decrease of " + str(entries) + " entries at the GEHA Gate at " + timestamp +  ", return workers."
             print(alert)
             subject_str = "GEHA Gate"
             content_str = alert
@@ -308,23 +310,24 @@ def TMobile_callback(ch, method, properties, body):
     # check to see if the most current entry is an outlier
 
     if TMobile_Count % 5 == 0:
-        # define a constant for the outlier threshold
-        OUTLIER_THRESHOLD = 2
+        # define constants for the outlier thresholds
+        UPPER_OUTLIER_THRESHOLD = 3
+        LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the TMobile_Totals list
         mean = statistics.mean(TMobile_Totals)
         stdev = statistics.stdev(TMobile_Totals)
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
-        if entries > mean + OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the T-Mobile Gate at "+ timestamp + "send help."
+        if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a surge of "+ str(entries) + " entries at the T-Mobile Gate at "+ timestamp + " send help."
             print(alert)
             subject_str = "T-Mobile Gate"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
-        elif entries < mean - OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the T-Mobile Gate at " + timestamp +  "return workers."
+        elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a decrease of " + str(entries) + " entries at the T-Mobile Gate at " + timestamp +  ", return workers."
             print(alert)
             subject_str = "T-Mobile Gate"
             content_str = alert
@@ -371,23 +374,24 @@ def CommunityAmerica_callback(ch, method, properties, body):
     # check to see if the most current entry is an outlier
 
     if CommunityAmerica_Count % 5 == 0:
-        # define a constant for the outlier threshold
-        OUTLIER_THRESHOLD = 2
+        # define constants for the outlier thresholds
+        UPPER_OUTLIER_THRESHOLD = 3
+        LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the CommunityAmerica_Totals list
         mean = statistics.mean(CommunityAmerica_Totals)
         stdev = statistics.stdev(CommunityAmerica_Totals)
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
-        if entries > mean + OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the CommunityAmerica Gate at "+ timestamp + "send help."
+        if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a surge of "+ str(entries) + " entries at the CommunityAmerica Gate at "+ timestamp + " send help."
             print(alert)
             subject_str = "CommunityAmerica Gate"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
-        elif entries < mean - OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the CommunityAmerica Gate at " + timestamp +  "return workers."
+        elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a decrease of " + str(entries) + " entries at the CommunityAmerica Gate at " + timestamp +  ", return workers."
             print(alert)
             subject_str = "CommunityAmerica Gate"
             content_str = alert
@@ -433,23 +437,24 @@ def Founders_callback(ch, method, properties, body):
     # check to see if the most current entry is an outlier
 
     if Founders_Count % 5 == 0:
-        # define a constant for the outlier threshold
-        OUTLIER_THRESHOLD = 2
+        # define constants for the outlier thresholds
+        UPPER_OUTLIER_THRESHOLD = 3
+        LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the Founders_Totals list
         mean = statistics.mean(Founders_Totals)
         stdev = statistics.stdev(Founders_Totals)
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
-        if entries > mean + OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the Founder's Plaza Gate at "+ timestamp + "send help."
+        if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a surge of "+ str(entries) + " entries at the Founder's Plaza Gate at "+ timestamp + " send help."
             print(alert)
             subject_str = "Founder's Plaza Gate"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
-        elif entries < mean - OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the Founder's Plaza Gate at " + timestamp +  "return workers."
+        elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a decrease of " + str(entries) + " entries at the Founder's Plaza Gate at " + timestamp +  ", return workers."
             print(alert)
             subject_str = "Founder's Plaza Gate"
             content_str = alert
@@ -495,23 +500,24 @@ def Tower_callback(ch, method, properties, body):
     # check to see if the most current entry is an outlier
     
     if Tower_Count % 5 == 0:
-        # define a constant for the outlier threshold
-        OUTLIER_THRESHOLD = 2
+        # define constants for the outlier thresholds
+        UPPER_OUTLIER_THRESHOLD = 3
+        LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the Tower_Totals list
         mean = statistics.mean(Tower_Totals)
         stdev = statistics.stdev(Tower_Totals)
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
-        if entries > mean + OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the Tower Gate at "+ timestamp + "send help."
+        if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a surge of "+ str(entries) + " entries at the Tower Gate at "+ timestamp + " send help."
             print(alert)
             subject_str = "Tower Gate"
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
         # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
-        elif entries < mean - OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the Tower Gate at " + timestamp +  "return workers."
+        elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
+            alert = "***** There is a decrease of " + str(entries) + " entries at the Tower Gate at " + timestamp +  ", return workers."
             print(alert)
             subject_str = "Tower Gate"
             content_str = alert
