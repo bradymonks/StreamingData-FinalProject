@@ -247,9 +247,9 @@ def GEHA_callback(ch, method, properties, body):
      # Check if the message is type float
     if isinstance(entries, float):
         GEHA_Totals.append(entries)
-        print(f" [x] GEHA Gate: {timestamp} -- {int(entries)} new entries")
+        print(f" [x] GEHA Gate: ------------{timestamp} -- {int(entries)} new entries")
     else:
-        print(f" [x] GEHA Gate: {timestamp} -- {entries} new entries")
+        print(f" [x] GEHA Gate: ------------{timestamp} -- {entries} new entries")
 
     # Identify global variables
     global Worker_Count
@@ -318,9 +318,9 @@ def TMobile_callback(ch, method, properties, body):
      # Check if the message is type float
     if isinstance(entries, float):
         TMobile_Totals.append(entries)
-        print(f" [x] T-Mobile Gate: {timestamp} -- {int(entries)} new entries")
+        print(f" [x] T-Mobile Gate: --------{timestamp} -- {int(entries)} new entries")
     else:
-        print(f" [x] T-Mobile Gate: {timestamp} -- {entries} new entries")
+        print(f" [x] T-Mobile Gate: --------{timestamp} -- {entries} new entries")
 
     # Identify global variables
     global Worker_Count
@@ -461,9 +461,9 @@ def Founders_callback(ch, method, properties, body):
      # Check if the message is type float
     if isinstance(entries, float):
         Founders_Totals.append(entries)
-        print(f" [x] Founder's Plaza Gate: {timestamp} -- {int(entries)} new entries")
+        print(f" [x] Founder's Plaza Gate: -{timestamp} -- {int(entries)} new entries")
     else:
-        print(f" [x] Founder's Plaza Gate: {timestamp} -- {entries} new entries")
+        print(f" [x] Founder's Plaza Gate: -{timestamp} -- {entries} new entries")
 
     # Identify global variables
     global Worker_Count
@@ -532,10 +532,10 @@ def Tower_callback(ch, method, properties, body):
      # Check if the message is type float
     if isinstance(entries, float):
         Tower_Totals.append(entries)
-        print(f" [x] Tower Gate: {timestamp} -- {int(entries)} new entries")
+        print(f" [x] Tower Gate: -----------{timestamp} -- {int(entries)} new entries")
     else:
-        print(f" [x] Tower Gate: {timestamp} -- {entries} new entries")
-        
+        print(f" [x] Tower Gate: -----------{timestamp} -- {entries} new entries")
+
     # Identify global variables
     global Worker_Count
     global Tower_Count
