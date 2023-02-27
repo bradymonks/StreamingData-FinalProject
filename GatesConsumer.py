@@ -578,6 +578,9 @@ def Tower_callback(ch, method, properties, body):
     if Worker_Count > 0 or Worker_Recalls > 0:
         print("Workers sent: ",Worker_Count)
         print("Workers Recalled: ",Worker_Recalls)
+    
+    # Print buffer before next update
+    print("_______")
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
