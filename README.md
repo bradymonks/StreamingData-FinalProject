@@ -53,4 +53,17 @@ I felt like my eyes were bouncing around when receiving messages so I added dash
 
 ![Message Received](ReceivedMessage.png)
 
+# Project Requirements
 
+- Create a custom GitHub project repo to showcase your skills. Done
+- Describe and plan an new implementation using RabbitMQ for streaming data. 
+    - I used RabbitMQ in a similar capacity to our previous project, however I wanted to see how it would work when I had up to six queues going at once.
+- Create one or more custom producers. Done
+- Create one or more custom consumers. Done
+- You can simulate your initial data source using Faker or some other file - or read from an API (not too much, too often, or too fast!) Done
+- How did you explore exchanges and queues? 
+    - I was able to use exchanges and queues to help me receive messages and interpret them. The queues allowed me to separate the gates into their own domains.  
+- Did you use time windows? 
+    - I did not. I kept a running average of my attendance due to the numbers being randomized by excel and not completely exponential. 
+- What made this an interesting streaming project for you?
+    - This was a fascinating project for me because combined two things that I'm very passionate about, coding and the Kansas City Chiefs. 
