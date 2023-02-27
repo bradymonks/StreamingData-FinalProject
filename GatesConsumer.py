@@ -60,7 +60,7 @@ def createAndSendEmailAlert(email_subject: str, email_body: str):
 
     server = smtplib.SMTP(host)
     server.set_debuglevel(2)
-
+    
     print("========================================")
     print(f"SMTP server created: {str(server)}")
     print("========================================")
@@ -174,9 +174,9 @@ def HyVee_callback(ch, method, properties, body):
      # Check if the message is type float
     if isinstance(entries, float):
         HyVee_Totals.append(entries)
-        print(f" [x] HyVee Gate: {timestamp} -- {int(entries)} new entries")
+        print(f" [x] HyVee Gate: -----------{timestamp} -- {int(entries)} new entries")
     else:
-        print(f" [x] HyVee Gate: {timestamp} -- {entries} new entries")
+        print(f" [x] HyVee Gate: -----------{timestamp} -- {entries} new entries")
 
     # Identify global variables
     global Worker_Count
@@ -191,7 +191,7 @@ def HyVee_callback(ch, method, properties, body):
 
     if HyVee_Count % 5 == 0:
         # define constants for the outlier thresholds
-        UPPER_OUTLIER_THRESHOLD = 3
+        UPPER_OUTLIER_THRESHOLD = 2.5
         LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the HyVee_Totals list
@@ -264,7 +264,7 @@ def GEHA_callback(ch, method, properties, body):
 
     if GEHA_Count % 5 == 0:
         # define constants for the outlier thresholds
-        UPPER_OUTLIER_THRESHOLD = 3
+        UPPER_OUTLIER_THRESHOLD = 2.5
         LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the GEHA_Totals list
@@ -335,7 +335,7 @@ def TMobile_callback(ch, method, properties, body):
 
     if TMobile_Count % 5 == 0:
         # define constants for the outlier thresholds
-        UPPER_OUTLIER_THRESHOLD = 3
+        UPPER_OUTLIER_THRESHOLD = 2.5
         LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the TMobile_Totals list
@@ -407,7 +407,7 @@ def CommunityAmerica_callback(ch, method, properties, body):
 
     if CommunityAmerica_Count % 5 == 0:
         # define constants for the outlier thresholds
-        UPPER_OUTLIER_THRESHOLD = 3
+        UPPER_OUTLIER_THRESHOLD = 2.5
         LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the CommunityAmerica_Totals list
@@ -478,7 +478,7 @@ def Founders_callback(ch, method, properties, body):
 
     if Founders_Count % 5 == 0:
         # define constants for the outlier thresholds
-        UPPER_OUTLIER_THRESHOLD = 3
+        UPPER_OUTLIER_THRESHOLD = 2.5
         LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the Founders_Totals list
@@ -549,7 +549,7 @@ def Tower_callback(ch, method, properties, body):
     
     if Tower_Count % 5 == 0:
         # define constants for the outlier thresholds
-        UPPER_OUTLIER_THRESHOLD = 3
+        UPPER_OUTLIER_THRESHOLD = 2.5
         LOWER_OUTLIER_THRESHOLD = 1
 
         # calculate the average and standard deviation of the Tower_Totals list
