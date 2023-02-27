@@ -151,6 +151,7 @@ Founders_Count = 0
 Tower_Totals = []
 Tower_Count = 0
 Worker_Count = 0
+Worker_Recalls = 0
 
 # define a callback function to be called when a message is received for the HyVee Gate
 def HyVee_callback(ch, method, properties, body):
@@ -168,15 +169,19 @@ def HyVee_callback(ch, method, properties, body):
     except ValueError:
         # ignore the error and continue the process
         pass
-    print(f" [x] Received HyVee Gate at {body.decode()} new entries")
     
+
      # Check if the message is type float
     if isinstance(entries, float):
         HyVee_Totals.append(entries)
+        print(f" [x] HyVee Gate: {timestamp} -- {int(entries)} new entries")
+    else:
+        print(f" [x] HyVee Gate: {timestamp} -- {entries} new entries")
 
     # Identify global variables
     global Worker_Count
     global HyVee_Count
+    global Worker_Recalls
 
     # add to count 
 
@@ -209,6 +214,8 @@ def HyVee_callback(ch, method, properties, body):
                 subject_str = "HyVee Gate - Decrease"
                 content_str = alert
                 createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+                Worker_Recalls += 1
+
 
 
     # simulate work by sleeping for the number of dots in the message
@@ -235,15 +242,19 @@ def GEHA_callback(ch, method, properties, body):
     except ValueError:
         # ignore the error and continue the process
         pass
-    print(f" [x] Received GEHA Gate at {body.decode()} new entries")
     
+
      # Check if the message is type float
     if isinstance(entries, float):
         GEHA_Totals.append(entries)
+        print(f" [x] GEHA Gate: {timestamp} -- {int(entries)} new entries")
+    else:
+        print(f" [x] GEHA Gate: {timestamp} -- {entries} new entries")
 
     # Identify global variables
     global Worker_Count
     global GEHA_Count
+    global Worker_Recalls
 
     # add to count 
 
@@ -276,6 +287,7 @@ def GEHA_callback(ch, method, properties, body):
                 subject_str = "GEHA Gate - Decrease"
                 content_str = alert
                 createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+                Worker_Recalls += 1
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
@@ -301,15 +313,19 @@ def TMobile_callback(ch, method, properties, body):
     except ValueError:
         # ignore the error and continue the process
         pass
-    print(f" [x] Received T-Mobile Gate at {body.decode()} new entries")
     
+
      # Check if the message is type float
     if isinstance(entries, float):
         TMobile_Totals.append(entries)
+        print(f" [x] T-Mobile Gate: {timestamp} -- {int(entries)} new entries")
+    else:
+        print(f" [x] T-Mobile Gate: {timestamp} -- {entries} new entries")
 
     # Identify global variables
     global Worker_Count
     global TMobile_Count
+    global Worker_Recalls
 
     # add to count 
 
@@ -342,6 +358,7 @@ def TMobile_callback(ch, method, properties, body):
                 subject_str = "T-Mobile Gate - Decrease"
                 content_str = alert
                 createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+                Worker_Recalls += 1
 
 
     # simulate work by sleeping for the number of dots in the message
@@ -368,15 +385,19 @@ def CommunityAmerica_callback(ch, method, properties, body):
     except ValueError:
         # ignore the error and continue the process
         pass
-    print(f" [x] Received CommunityAmerica Gate at {body.decode()} new entries")
     
+
      # Check if the message is type float
     if isinstance(entries, float):
         CommunityAmerica_Totals.append(entries)
+        print(f" [x] CommunityAmerica Gate: {timestamp} -- {int(entries)} new entries")
+    else:
+        print(f" [x] CommunityAmerica Gate: {timestamp} -- {entries} new entries")
 
     # Identify global variables
     global Worker_Count
     global CommunityAmerica_Count
+    global Worker_Recalls
 
     # add to count 
 
@@ -409,6 +430,7 @@ def CommunityAmerica_callback(ch, method, properties, body):
                 subject_str = "CommunityAmerica Gate - Decrease"
                 content_str = alert
                 createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+                Worker_Recalls += 1
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
@@ -434,15 +456,19 @@ def Founders_callback(ch, method, properties, body):
     except ValueError:
         # ignore the error and continue the process
         pass
-    print(f" [x] Received Founder's Plaza Gate at {body.decode()} new entries")
     
+
      # Check if the message is type float
     if isinstance(entries, float):
         Founders_Totals.append(entries)
+        print(f" [x] Founder's Plaza Gate: {timestamp} -- {int(entries)} new entries")
+    else:
+        print(f" [x] Founder's Plaza Gate: {timestamp} -- {entries} new entries")
 
     # Identify global variables
     global Worker_Count
     global Founders_Count
+    global Worker_Recalls
 
     # add to count 
 
@@ -475,6 +501,7 @@ def Founders_callback(ch, method, properties, body):
                 subject_str = "Founder's Plaza Gate - Decrease"
                 content_str = alert
                 createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+                Worker_Recalls += 1
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
@@ -500,15 +527,19 @@ def Tower_callback(ch, method, properties, body):
     except ValueError:
         # ignore the error and continue the process
         pass
-    print(f" [x] Tower Gate: {timestamp} -- {round(float(entries))} new entries")
+
     
      # Check if the message is type float
     if isinstance(entries, float):
         Tower_Totals.append(entries)
-
+        print(f" [x] Tower Gate: {timestamp} -- {int(entries)} new entries")
+    else:
+        print(f" [x] Tower Gate: {timestamp} -- {entries} new entries")
+        
     # Identify global variables
     global Worker_Count
     global Tower_Count
+    global Worker_Recalls
 
     # add to count 
 
@@ -541,9 +572,11 @@ def Tower_callback(ch, method, properties, body):
                 subject_str = "Tower Gate - Decrease"
                 content_str = alert
                 createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+                Worker_Recalls += 1
 
-    # Print number of workers sent out to help
+    # Print number of workers sent out to help and recalled
     print("Workers sent: ",Worker_Count)
+    print("Workers Recalled: ",Worker_Recalls)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
