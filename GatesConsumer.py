@@ -200,7 +200,7 @@ def HyVee_callback(ch, method, properties, body):
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the HyVee Gate at "+ timestamp + " send help. *****"
+            alert = "***** There is an increase in entries at the HyVee Gate at "+ timestamp + " send help. *****"
             print(alert)
             subject_str = "HyVee Gate - Surge"
             content_str = alert
@@ -273,7 +273,7 @@ def GEHA_callback(ch, method, properties, body):
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the GEHA Gate at "+ timestamp + " send help. *****"
+            alert = "***** There is an increase in entries at the GEHA Gate at "+ timestamp + " send help. *****"
             print(alert)
             subject_str = "GEHA Gate - Surge"
             content_str = alert
@@ -344,7 +344,7 @@ def TMobile_callback(ch, method, properties, body):
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the T-Mobile Gate at "+ timestamp + " send help. *****"
+            alert = "***** There is an increase in entries at the T-Mobile Gate at "+ timestamp + " send help. *****"
             print(alert)
             subject_str = "T-Mobile Gate - Surge"
             content_str = alert
@@ -416,7 +416,7 @@ def CommunityAmerica_callback(ch, method, properties, body):
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the CommunityAmerica Gate at "+ timestamp + " send help. *****"
+            alert = "***** There is an increase in entries at the CommunityAmerica Gate at "+ timestamp + " send help. *****"
             print(alert)
             subject_str = "CommunityAmerica Gate - Surge"
             content_str = alert
@@ -487,7 +487,7 @@ def Founders_callback(ch, method, properties, body):
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the Founder's Plaza Gate at "+ timestamp + " send help. *****"
+            alert = "***** There is an increase in entries at the Founder's Plaza Gate at "+ timestamp + " send help. *****"
             print(alert)
             subject_str = "Founder's Plaza Gate - Surge"
             content_str = alert
@@ -558,7 +558,7 @@ def Tower_callback(ch, method, properties, body):
 
         # check if the most recent entry is an upper outlier and create cmd prompt alert and email alert
         if entries > mean + UPPER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a surge of "+ str(entries) + " entries at the Tower Gate at "+ timestamp + " send help. *****"
+            alert = "***** There is an increase in entries at the Tower Gate at "+ timestamp + " send help. *****"
             print(alert)
             subject_str = "Tower Gate - Surge"
             content_str = alert
@@ -575,8 +575,9 @@ def Tower_callback(ch, method, properties, body):
                 Worker_Recalls += 1
 
     # Print number of workers sent out to help and recalled
-    print("Workers sent: ",Worker_Count)
-    print("Workers Recalled: ",Worker_Recalls)
+    if Worker_Count > 0 or Worker_Recalls > 0:
+        print("Workers sent: ",Worker_Count)
+        print("Workers Recalled: ",Worker_Recalls)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
