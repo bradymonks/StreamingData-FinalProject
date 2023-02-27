@@ -201,13 +201,14 @@ def HyVee_callback(ch, method, properties, body):
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
             Worker_Count += 1
-        # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
+        # check if the most recent entry is a lower outlier and after the game starts and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the HyVee Gate at " + timestamp +  ", return workers."
-            print(alert)
-            subject_str = "HyVee Gate - Decrease"
-            content_str = alert
-            createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            if timestamp > "12:00:00":
+                alert = "*****  Entry numbers are decreasing at the HyVee Gate at " + timestamp +  ", return workers."
+                print(alert)
+                subject_str = "HyVee Gate - Decrease"
+                content_str = alert
+                createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
 
     # simulate work by sleeping for the number of dots in the message
@@ -267,13 +268,14 @@ def GEHA_callback(ch, method, properties, body):
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
             Worker_Count += 1
-        # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
+        # check if the most recent entry is a lower outlier and after the game starts and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the GEHA Gate at " + timestamp +  ", return workers."
-            print(alert)
-            subject_str = "GEHA Gate - Decrease"
-            content_str = alert
-            createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            if timestamp > "12:00:00":
+                alert = "***** Entry numbers are decreasing at the GEHA Gate at " + timestamp +  ", return workers."
+                print(alert)
+                subject_str = "GEHA Gate - Decrease"
+                content_str = alert
+                createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
@@ -332,13 +334,14 @@ def TMobile_callback(ch, method, properties, body):
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
             Worker_Count += 1
-        # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
+        # check if the most recent entry is a lower outlier and after the game starts and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the T-Mobile Gate at " + timestamp +  ", return workers."
-            print(alert)
-            subject_str = "T-Mobile Gate - Decrease"
-            content_str = alert
-            createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            if timestamp > "12:00:00":
+                alert = "***** Entry numbers are decreasing at the T-Mobile Gate at " + timestamp +  ", return workers."
+                print(alert)
+                subject_str = "T-Mobile Gate - Decrease"
+                content_str = alert
+                createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
 
     # simulate work by sleeping for the number of dots in the message
@@ -398,13 +401,14 @@ def CommunityAmerica_callback(ch, method, properties, body):
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
             Worker_Count += 1
-        # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
+        # check if the most recent entry is a lower outlier and after the game starts and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the CommunityAmerica Gate at " + timestamp +  ", return workers."
-            print(alert)
-            subject_str = "CommunityAmerica Gate - Decrease"
-            content_str = alert
-            createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            if timestamp > "12:00:00":
+                alert = "***** Entry numbers are decreasing at the CommunityAmerica Gate at " + timestamp +  ", return workers."
+                print(alert)
+                subject_str = "CommunityAmerica Gate - Decrease"
+                content_str = alert
+                createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
@@ -463,13 +467,14 @@ def Founders_callback(ch, method, properties, body):
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
             Worker_Count += 1
-        # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
+        # check if the most recent entry is a lower outlier and after the game starts and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the Founder's Plaza Gate at " + timestamp +  ", return workers."
-            print(alert)
-            subject_str = "Founder's Plaza Gate - Decrease"
-            content_str = alert
-            createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            if timestamp > "12:00:00":
+                alert = "***** Entry numbers are decreasing at the Founder's Plaza Gate at " + timestamp +  ", return workers."
+                print(alert)
+                subject_str = "Founder's Plaza Gate - Decrease"
+                content_str = alert
+                createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
@@ -528,16 +533,17 @@ def Tower_callback(ch, method, properties, body):
             content_str = alert
             createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
             Worker_Count += 1
-        # check if the most recent entry is a lower outlier and create cmd prompt alert and email alert
+        # check if the most recent entry is a lower outlier and after the game starts and create cmd prompt alert and email alert
         elif entries < mean - LOWER_OUTLIER_THRESHOLD * stdev:
-            alert = "***** There is a decrease of " + str(entries) + " entries at the Tower Gate at " + timestamp +  ", return workers."
-            print(alert)
-            subject_str = "Tower Gate - Surge"
-            content_str = alert
-            createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
+            if timestamp > "12:00:00":
+                alert = "***** Entry numbers are decreasing at the Tower Gate at " + timestamp +  ", return workers."
+                print(alert)
+                subject_str = "Tower Gate - Decrease"
+                content_str = alert
+                createAndSendEmailAlert(email_subject=subject_str, email_body=content_str)
 
     # Print number of workers sent out to help
-    print(Worker_Count)
+    print("Workers sent: ",Worker_Count)
 
     # simulate work by sleeping for the number of dots in the message
     time.sleep(body.count(b"."))
